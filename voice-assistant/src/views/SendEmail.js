@@ -29,7 +29,9 @@ export default function SendEmail({ message }) {
         newMessage: newMessage.length > 0 ? newMessage : message,
       };
       setBool(true);
-      const res = await axios.post("http://localhost:5000/send", data);
+      // "proxy": "http://localhost:5000",
+      // "proxy": "https://voice-assistant-jo.herokuapp.com",
+      const res = await axios.post("/send", data);
       if (name.length === 0 || email.length === 0 || newMessage.length === 0) {
         setBanner(res.data.msg);
         toast.error(res.data.msg);
