@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index",
+    "start": "nodemon index",
     "voice": "npm start --prefix voice-assistant",
-    "dev": "concurrently \"npm run index\" \"npm run voice\"",
+    "dev": "concurrently \"npm run start\" \"npm run voice\"",
     "build":"npm install && cd voice-assistant && npm install && npm run build",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix voice-assistant && npm run build --prefix voice-assistant"
   },
