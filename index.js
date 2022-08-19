@@ -34,10 +34,10 @@ app.use("/", sendRoute);
 
 //Deployment with Heroku
 const __dirname = path.resolve(); //get the current file path
-app.use(express.static(path.join(__dirname, "/voice-assistant/build"))); //serve all files in build folder
-app.get("*", (req, res) =>
-  res.sendFile(path.join(__dirname, "frontend/build/index.html"))
-);//everything is gonna be serve on index.html file
+// app.use(express.static(path.join(__dirname, "/voice-assistant/build"))); //serve all files in build folder
+// app.get("*", (req, res) =>
+//   res.sendFile(path.join(__dirname, "frontend/build/index.html"))
+// );//everything is gonna be serve on index.html file
 
 if (process.env.NODE_ENV === "production") {
   //we create a "build" folder in "client"
