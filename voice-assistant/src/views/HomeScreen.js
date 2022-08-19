@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 
-function HomeScreen() {
-    const navigate = useNavigate()
+function HomeScreen({ message, onChangeMessage }) {
+  const navigate = useNavigate();
+  const textEl = useRef("");
+  function removeLastWorld(str) {
+    const lastIndexOfSpace = str.lastIndexOf(" ");
+    if (lastIndexOfSpace === -1) {
+      return str;
+    }
+    return str.substring(0, lastIndexOfSpace);
+  }
   const commands = [
     {
       command: "reset",
@@ -42,9 +50,13 @@ function HomeScreen() {
       },
     },
     {
-      command: "envoyer",
+      command: "email",
       callback: () => {
-        return (navigate('/email'));
+        message = textEl.current.innerText;
+        message = removeLastWorld(message);
+        console.log(message);
+        onChangeMessage(message);
+        return navigate("/email");
       },
     },
   ];
@@ -67,7 +79,7 @@ function HomeScreen() {
         <h2>Voice Assistant - speech recognition</h2>
       </header>
       <main className="content">
-        <p className="text" id="textContent">
+        <p className="text" id="textContent" ref={textEl}>
           {transcript}
         </p>
         <p>voice command avalaible : </p>
@@ -80,6 +92,9 @@ function HomeScreen() {
         </p>
         <p>
           <span>Reset</span> : to reset microphone
+        </p>
+        <p>
+          <span>email</span> : to send message by email
         </p>
         {/* <p className="microStatus">Microphone : {listening ? "ON" : "OFF"}</p>
         <div>

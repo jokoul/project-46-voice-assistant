@@ -1,7 +1,8 @@
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import HomeScreen from "./views/HomeScreen.js";
 import SendEmail from "./views/SendEmail.js";
+import FooterComp from "./components/FooterComp";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 // import SpeechRecognition, {
 //   useSpeechRecognition,
@@ -90,14 +91,27 @@ function App() {
   //     </main>
   //   </div>
   // );
+  const [message, setMessage] = useState("");
+
   return (
     <div>
+    <main>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomeScreen/>} />
-          <Route path="/email" element={<SendEmail/>} />
+          <Route
+            path="/"
+            element={
+              <HomeScreen
+                message={message}
+                onChangeMessage={(e) => setMessage(e)}
+              />
+            }
+          />
+          <Route path="/email" element={<SendEmail message={message} />} />
         </Routes>
       </BrowserRouter>
+    </main>
+      <FooterComp />
     </div>
   );
 }
