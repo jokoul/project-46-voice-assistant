@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index",
+    "start": "node index",
     "voice": "npm start --prefix voice-assistant",
     "dev": "concurrently \"npm run index\" \"npm run voice\"",
     "build":"npm install && cd voice-assistant && npm install && npm run build",
