@@ -1,5 +1,4 @@
 require("dotenv").config();
-import path from "path";
 // api_key = process.env.API_KEY;
 // // console.log(api_key);
 
